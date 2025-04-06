@@ -55,7 +55,7 @@ const Costume = sequelize.define(
   {
     tableName: "costumes",
     freezeTableName: true,
-    timestamps: true,
+    timestamps: false,
   }
 );
 

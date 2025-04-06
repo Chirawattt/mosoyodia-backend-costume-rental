@@ -36,17 +36,7 @@ const sequelize = new Sequelize(
       },
     },
     define: {
-      timestamps: true,
-      createdAt: {
-        allowNull: false,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      },
-      updatedAt: {
-        allowNull: false,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        ),
-      },
+      timestamps: false,
     },
     logging: false,
   }
