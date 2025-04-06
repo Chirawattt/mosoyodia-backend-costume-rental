@@ -54,9 +54,9 @@ async function initializeDatabase() {
     await sequelize.authenticate();
     console.log("Connected to Railway Database");
 
-    // สร้างตารางทั้งหมดตามโมเดลที่กำหนด และอัปเดตโครงสร้างตารางที่มีอยู่แล้ว
-    await sequelize.sync({ alter: true });
-    console.log("Railway Database tables created and updated successfully");
+    // สร้างตารางทั้งหมดตามโมเดลที่กำหนด แต่ไม่สร้างตารางใหม่ถ้ามีอยู่แล้ว
+    await sequelize.sync({ force: false });
+    console.log("Railway Database connected successfully");
 
     // เริ่มรันเซิร์ฟเวอร์
     app.listen(PORT, () => {

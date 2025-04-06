@@ -27,9 +27,26 @@ const sequelize = new Sequelize(
       ssl: {
         rejectUnauthorized: false,
       },
+      dateStrings: true,
+      typeCast: function (field, next) {
+        if (field.type === "DATETIME") {
+          return field.string();
+        }
+        return next();
+      },
     },
     define: {
-      timestamps: false,
+      timestamps: true,
+      createdAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      },
+      updatedAt: {
+        allowNull: false,
+        defaultValue: Sequelize.literal(
+          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        ),
+      },
     },
     logging: false,
   }

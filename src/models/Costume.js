@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 const sequelize = require("../config/database");
 
 const Costume = sequelize.define(
@@ -38,6 +38,18 @@ const Costume = sequelize.define(
     image_path: {
       type: DataTypes.TEXT,
       allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.literal(
+        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+      ),
     },
   },
   {
