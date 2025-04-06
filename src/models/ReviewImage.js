@@ -22,6 +22,7 @@ const ReviewImage = sequelize.define(
   {
     tableName: "review_images",
     freezeTableName: true,
+    timestamps: true,
   }
 );
 
