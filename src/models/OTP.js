@@ -36,6 +36,8 @@ const OTP = sequelize.define(
     },
   },
   {
+    tableName: "otps",
+    freezeTableName: true,
     timestamps: true,
   }
 );
