@@ -35,8 +35,8 @@ const Costume = sequelize.define(
       type: DataTypes.TINYINT, // 0 = Kimono, 1 = Yukata, 2 = Cosplay
       allowNull: false,
     },
-    image_url: {
-      type: DataTypes.STRING,
+    image_path: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     image_public_id: {

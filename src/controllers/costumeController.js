@@ -58,7 +58,7 @@ const createCostume = async (req, res) => {
       status,
       isRentable,
       category,
-      image_url: imageData?.url || null,
+      image_path: imageData?.url || null,
       image_public_id: imageData?.public_id || null,
     });
 
@@ -95,7 +95,7 @@ const updateCostume = async (req, res) => {
       status,
       isRentable,
       category,
-      image_url: imageData?.url || costume.image_url,
+      image_path: imageData?.url || costume.image_path,
       image_public_id: imageData?.public_id || costume.image_public_id,
     });
 
