@@ -42,4 +42,19 @@ Thumbs.db
 
 # Temporary files
 *.tmp
+*.temp
+/temp
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+
+# Testing
+/coverage
+
+# Temporary files
+*.tmp
 *.temp 
