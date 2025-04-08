@@ -212,5 +212,5 @@ module.exports = {
   getAllReviewImageByCostumeId,
   updateCostumeStatus,
   updateCostumeRentableStatus,
-  resetAllCostumesRentableStatus,
+  resetAllCostumesStatus,
 };
