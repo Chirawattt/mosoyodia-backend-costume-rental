@@ -18,6 +18,10 @@ const ReviewImage = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    image_public_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     tableName: "review_images",

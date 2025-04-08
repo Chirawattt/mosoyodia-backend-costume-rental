@@ -8,7 +8,8 @@
     "start": "node server.js",
     "migrate": "sequelize-cli db:migrate",
     "migrate:undo": "sequelize-cli db:migrate:undo",
-    "migrate:images": "node src/scripts/migrateImagesToCloudinary.js"
+    "migrate:images": "node src/scripts/migrateImagesToCloudinary.js",
+    "migrate:review-images": "node src/scripts/migrateReviewImagesToCloudinary.js"
   },
   "keywords": [],
   "author": "",
