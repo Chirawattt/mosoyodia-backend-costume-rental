@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const {
   getAllReviewImages,
-  getReviewImagesByCostumeId,
   getReviewImageById,
   uploadReviewImage,
   deleteReviewImage,
@@ -11,9 +10,6 @@ const {
 
 // GET รูปภาพทั้งหมด
 router.get("/", getAllReviewImages);
-
-// GET รูปภาพตาม costume_id
-router.get("/costume/:costume_id", getReviewImagesByCostumeId);
 
 // GET รูปภาพตาม id
 router.get("/:image_id", getReviewImageById);

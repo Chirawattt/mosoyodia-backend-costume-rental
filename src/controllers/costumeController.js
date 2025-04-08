@@ -1,8 +1,7 @@
 const Costume = require("../models/Costume");
+const ReviewImage = require("../models/ReviewImage");
 const { uploadImage, deleteImage } = require("../utils/uploadImage");
 const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
 
 // ตั้งค่า multer สำหรับเก็บไฟล์ในหน่วยความจำแทนการบันทึกลงดิสก์
 const storage = multer.memoryStorage();
