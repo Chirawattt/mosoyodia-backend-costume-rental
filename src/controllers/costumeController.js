@@ -28,6 +28,30 @@ const getAllCostumes = async (req, res) => {
   }
 };
 
+// Get all costumes by category
+const getAllCostumesByCategory = async (req, res) => {
+  try {
+    const costumes = await Costume.findAll({
+      where: { category: req.params.category },
+    });
+    res.json(costumes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Get all reviewImage by costume id
+const getAllReviewImageByCostumeId = async (req, res) => {
+  try {
+    const reviewImages = await ReviewImage.findAll({
+      where: { costume_id: req.params.id },
+    });
+    res.json(reviewImages);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Get all rentable costumes
 const getAllRentableCostumes = async (req, res) => {
   try {
@@ -115,6 +139,46 @@ const updateCostume = async (req, res) => {
   }
 };
 
+// Update status of costume
+const updateCostumeStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const costume = await Costume.findByPk(req.params.id);
+    if (!costume) {
+      return res.status(404).json({ message: "Costume not found" });
+    }
+    await costume.update({ status });
+    res.json({ message: "อัปเดตสถานะชุดสำเร็จ" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Update rentable status of costume
+const updateCostumeRentableStatus = async (req, res) => {
+  try {
+    const { isRentable } = req.body;
+    const costume = await Costume.findByPk(req.params.id);
+    if (!costume) {
+      return res.status(404).json({ message: "Costume not found" });
+    }
+    await costume.update({ isRentable });
+    res.json({ message: "อัปเดตสถานะการให้บริการชุดสำเร็จ" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Reset All Costumes rentable Status
+const resetAllCostumesRentableStatus = async (req, res) => {
+  try {
+    await Costume.update({ status: 1 }, { where: {} });
+    res.json({ message: "รีเซ็ตสถานะชุดทั้งหมดสำเร็จ" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 // Delete costume
 const deleteCostume = async (req, res) => {
   try {
@@ -144,4 +208,9 @@ module.exports = {
   updateCostume,
   deleteCostume,
   upload,
+  getAllCostumesByCategory,
+  getAllReviewImageByCostumeId,
+  updateCostumeStatus,
+  updateCostumeRentableStatus,
+  resetAllCostumesRentableStatus,
 };

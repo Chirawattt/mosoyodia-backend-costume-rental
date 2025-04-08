@@ -8,6 +8,11 @@ const {
   deleteCostume,
   getAllRentableCostumes,
   upload,
+  getAllCostumesByCategory,
+  getAllReviewImageByCostumeId,
+  updateCostumeStatus,
+  updateCostumeRentableStatus,
+  resetAllCostumesRentableStatus,
 } = require("../controllers/costumeController");
 
 // Get all costumes
@@ -16,11 +21,26 @@ router.get("/", getAllCostumes);
 // Get all rentable costumes
 router.get("/rentable", getAllRentableCostumes);
 
+// Get all costumes by category
+router.get("/category/:category", getAllCostumesByCategory);
+
+// GET all reviewImage by costume id
+router.get("/:id/reviewImage", getAllReviewImageByCostumeId);
+
 // Get costume by ID
 router.get("/:id", getCostumeById);
 
 // Create new costume
 router.post("/", upload.single("image"), createCostume);
+
+// Reset All Costumes rentable Status
+router.post("/resetStatus", resetAllCostumesRentableStatus);
+
+// Update status of costume
+router.put("/:id/status", updateCostumeStatus);
+
+// update rentable status of costume
+router.put("/:id/isRentable", updateCostumeRentableStatus);
 
 // Update costume
 router.put("/:id", upload.single("image"), updateCostume);
