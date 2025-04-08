@@ -51,15 +51,13 @@ const Costume = sequelize.define(
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.literal(
-        "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-      ),
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     },
   },
   {
     tableName: "costumes",
     freezeTableName: true,
-    timestamps: false,
+    timestamps: true,
   }
 );
 
