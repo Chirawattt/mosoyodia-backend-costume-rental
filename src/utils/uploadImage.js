@@ -1,12 +1,21 @@
 const cloudinary = require("../config/cloudinary");
-const path = require("path");
 
-const uploadImage = async (file, folder = "costumes") => {
+const uploadImage = async (buffer, folder = "costumes") => {
   try {
-    // อัพโหลดไฟล์ไปยัง Cloudinary
-    const result = await cloudinary.uploader.upload(file.path, {
-      folder: folder,
-      resource_type: "auto",
+    // อัพโหลด buffer ไปยัง Cloudinary โดยตรง
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            folder: folder,
+            resource_type: "auto",
+          },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          }
+        )
+        .end(buffer);
     });
 
     return {

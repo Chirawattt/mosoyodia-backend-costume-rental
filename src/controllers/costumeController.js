@@ -2,20 +2,10 @@ const Costume = require("../models/Costume");
 const { uploadImage, deleteImage } = require("../utils/uploadImage");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 
-// ตั้งค่า multer สำหรับเก็บไฟล์ชั่วคราว
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "temp/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
-
+// ตั้งค่า multer สำหรับเก็บไฟล์ในหน่วยความจำแทนการบันทึกลงดิสก์
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 // Get all costumes
@@ -82,7 +72,13 @@ const createCostume = async (req, res) => {
     let imageData = null;
 
     if (req.file) {
-      imageData = await uploadImage(req.file, "costumes");
+      try {
+        // อัพโหลด buffer ไปยัง Cloudinary โดยตรง
+        imageData = await uploadImage(req.file.buffer, "costumes");
+      } catch (error) {
+        console.error("Error processing image:", error);
+        throw error;
+      }
     }
 
     const costume = await Costume.create({
@@ -114,12 +110,18 @@ const updateCostume = async (req, res) => {
 
     let imageData = null;
     if (req.file) {
-      // ลบรูปเก่าถ้ามี
-      if (costume.image_public_id) {
-        await deleteImage(costume.image_public_id);
+      try {
+        // ลบรูปเก่าถ้ามี
+        if (costume.image_public_id) {
+          await deleteImage(costume.image_public_id);
+        }
+
+        // อัพโหลด buffer ไปยัง Cloudinary โดยตรง
+        imageData = await uploadImage(req.file.buffer, "costumes");
+      } catch (error) {
+        console.error("Error processing image:", error);
+        throw error;
       }
-      // อัพโหลดรูปใหม่
-      imageData = await uploadImage(req.file, "costumes");
     }
 
     await costume.update({
