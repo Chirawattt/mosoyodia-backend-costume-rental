@@ -18,9 +18,6 @@ const {
 // Get all costumes
 router.get("/", getAllCostumes);
 
-// Reset all costumes status
-router.post("/resetStatus", resetAllCostumesStatus);
-
 // Get all rentable costumes
 router.get("/rentable", getAllRentableCostumes);
 
@@ -35,6 +32,9 @@ router.get("/:id", getCostumeById);
 
 // Create new costume
 router.post("/", upload.single("image"), createCostume);
+
+// Reset all costumes status
+router.put("/resetStatus", resetAllCostumesStatus);
 
 // Update status of costume
 router.put("/:id/status", updateCostumeStatus);
