@@ -25,7 +25,7 @@ router.get("/rentable", getAllRentableCostumes);
 router.get("/category/:category", getAllCostumesByCategory);
 
 // GET all reviewImage by costume id
-router.get("/:id/reviewImage", getAllReviewImageByCostumeId);
+router.get("/:id/reviewImages", getAllReviewImageByCostumeId);
 
 // Get costume by ID
 router.get("/:id", getCostumeById);
