@@ -28,6 +28,16 @@ const getAllCostumes = async (req, res) => {
   }
 };
 
+// Get all rentable costumes
+const getAllRentableCostumes = async (req, res) => {
+  try {
+    const costumes = await Costume.findAll({ where: { isRentable: true } });
+    res.json(costumes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Get costume by ID
 const getCostumeById = async (req, res) => {
   try {
@@ -128,6 +138,7 @@ const deleteCostume = async (req, res) => {
 
 module.exports = {
   getAllCostumes,
+  getAllRentableCostumes,
   getCostumeById,
   createCostume,
   updateCostume,

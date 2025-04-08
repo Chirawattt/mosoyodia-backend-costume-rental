@@ -6,11 +6,15 @@ const {
   createCostume,
   updateCostume,
   deleteCostume,
+  getAllRentableCostumes,
   upload,
 } = require("../controllers/costumeController");
 
 // Get all costumes
 router.get("/", getAllCostumes);
+
+// Get all rentable costumes
+router.get("/rentable", getAllRentableCostumes);
 
 // Get costume by ID
 router.get("/:id", getCostumeById);
