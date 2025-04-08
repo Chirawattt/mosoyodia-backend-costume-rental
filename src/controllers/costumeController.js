@@ -169,8 +169,8 @@ const updateCostumeRentableStatus = async (req, res) => {
   }
 };
 
-// Reset All Costumes rentable Status
-const resetAllCostumesRentableStatus = async (req, res) => {
+// Reset all costumes status
+const resetAllCostumesStatus = async (req, res) => {
   try {
     await Costume.update({ status: 1 }, { where: {} });
     res.json({ message: "รีเซ็ตสถานะชุดทั้งหมดสำเร็จ" });

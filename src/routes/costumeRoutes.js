@@ -12,7 +12,7 @@ const {
   getAllReviewImageByCostumeId,
   updateCostumeStatus,
   updateCostumeRentableStatus,
-  resetAllCostumesRentableStatus,
+  resetAllCostumesStatus,
 } = require("../controllers/costumeController");
 
 // Get all costumes
@@ -33,8 +33,8 @@ router.get("/:id", getCostumeById);
 // Create new costume
 router.post("/", upload.single("image"), createCostume);
 
-// Reset All Costumes rentable Status
-router.post("/resetStatus", resetAllCostumesRentableStatus);
+// Reset all costumes status
+router.post("/resetStatus", resetAllCostumesStatus);
 
 // Update status of costume
 router.put("/:id/status", updateCostumeStatus);
