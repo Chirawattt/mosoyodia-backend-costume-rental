@@ -16,6 +16,18 @@ const getAllReviewImages = async (req, res) => {
   }
 };
 
+// GET รูปภาพตาม costume_id
+const getReviewImagesByCostumeId = async (req, res) => {
+  try {
+    const images = await ReviewImage.findAll({
+      where: { costume_id: req.params.costume_id },
+    });
+    res.json(images);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // GET รูปภาพตาม id
 const getReviewImageById = async (req, res) => {
   try {
@@ -92,6 +104,7 @@ const deleteReviewImage = async (req, res) => {
 
 module.exports = {
   getAllReviewImages,
+  getReviewImagesByCostumeId,
   getReviewImageById,
   uploadReviewImage,
   deleteReviewImage,
